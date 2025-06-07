@@ -15,6 +15,8 @@ private:
   IndicatorLed *m_indicator_led;
   OutputBuffer *m_output_buffer;
 
+  int buttonpressed();
+
 public:
   Application();
   void begin();
