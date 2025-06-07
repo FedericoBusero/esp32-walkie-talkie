@@ -7,6 +7,7 @@
 
 #ifndef WALKIE_TALKIE_USER_DEFINED
 
+// Define which pin is used as LED pin
 #ifdef LED_BUILTIN
 #define LED_PIN LED_BUILTIN
 #else
