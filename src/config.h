@@ -35,6 +35,8 @@
 
 // transmit button
 #define GPIO_TRANSMIT_BUTTON 23
+// Comment out following line to use the INPUT_PULLUP mode
+// #define TRANSMIT_BUTTON_INPUT_PULLUP
 
 // Which LED pin do you want to use? TinyPico LED or the builtin LED of a generic ESP32 board?
 // Comment out this line to use the builtin LED of a generic ESP32 board
