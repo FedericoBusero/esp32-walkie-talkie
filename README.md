@@ -32,7 +32,7 @@ Everything is configured from the `src/config.h` file. To use UDP Broadcast comm
 #define USE_ESP_NOW
 ```
 
-Make sure you update the WiFi SSID and Password:
+Make sure you update the WiFi SSID and Password when using UDP mode:
 
 ```
 // WiFi credentials
