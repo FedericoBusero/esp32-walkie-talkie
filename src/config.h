@@ -2,10 +2,6 @@
 #include <driver/i2s.h>
 #include <driver/gpio.h>
 
-// WiFi credentials
-#define WIFI_SSID << YOUR_SSID >>
-#define WIFI_PSWD << YOUR_PASSWORD >>
-
 // sample rate for the system
 #define SAMPLE_RATE 16000
 
@@ -46,6 +42,14 @@
 
 // On which wifi channel (1-11) should ESP-Now transmit? The default ESP-Now channel on ESP32 is channel 1
 #define ESP_NOW_WIFI_CHANNEL 1
+
+#ifndef USE_ESP_NOW
+
+// In case of UDP transport, define the WiFi credentials
+#define WIFI_SSID << YOUR_SSID >>
+#define WIFI_PSWD << YOUR_PASSWORD >>
+
+#endif
 
 // In case all transport packets need a header (to avoid interference with other applications or walkie talkie sets), 
 // specify TRANSPORT_HEADER_SIZE (the length in bytes of the header) in the next line, and define the transport header in config.cpp
