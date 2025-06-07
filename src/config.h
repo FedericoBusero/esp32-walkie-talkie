@@ -5,6 +5,8 @@
 // sample rate for the system
 #define SAMPLE_RATE 16000
 
+#ifndef WALKIE_TALKIE_USER_DEFINED
+
 #ifdef LED_BUILTIN
 #define LED_PIN LED_BUILTIN
 #else
@@ -41,6 +43,8 @@
 // Which LED pin do you want to use? TinyPico LED or the builtin LED of a generic ESP32 board?
 // Comment out this line to use the builtin LED of a generic ESP32 board
 // #define USE_LED_GENERIC
+
+#endif // WALKIE_TALKIE_USER_DEFINED
 
 // Which transport do you want to use? ESP_NOW or UDP?
 // comment out this line to use UDP
