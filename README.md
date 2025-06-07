@@ -42,6 +42,9 @@ Make sure you update the WiFi SSID and Password when using UDP mode:
 
 The pins for the microphone and the amplifier board are all setup in the same `config.h` file.
 
+Alternatively, you can define the pins in platformio.ini. In that case you need to set `WALKIE_TALKIE_USER_DEFINED`
+
+
 # Building and Running
 
 I'm using PlatformIO for this project so you will need to have that installed. Open up the project and connect your ESP32. You should be able to just hit build and run.
