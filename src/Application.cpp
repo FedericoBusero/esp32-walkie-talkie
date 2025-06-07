@@ -51,7 +51,7 @@ Application::Application()
 #ifdef ARDUINO_TINYPICO
   m_indicator_led = new TinyPICOIndicatorLed();
 #else
-  m_indicator_led = new GenericDevBoardIndicatorLed();
+  m_indicator_led = new GenericDevBoardIndicatorLed(LED_PIN);
 #endif
 
   if (I2S_SPEAKER_SD_PIN != -1)
