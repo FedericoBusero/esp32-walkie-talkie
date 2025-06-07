@@ -96,12 +96,25 @@ void Application::begin()
   m_indicator_led->set_default_color(0x00ff00);
   m_indicator_led->set_is_flashing(false, 0x00ff00);
   // setup the transmit button
+#ifdef TRANSMIT_BUTTON_INPUT_PULLUP
+  pinMode(GPIO_TRANSMIT_BUTTON, INPUT_PULLUP);
+#else
   pinMode(GPIO_TRANSMIT_BUTTON, INPUT_PULLDOWN);
+#endif
   // start off with i2S output running
   m_output->start(SAMPLE_RATE);
   // start the main task for the application
   TaskHandle_t task_handle;
   xTaskCreate(application_task, "application_task", 8192, this, 1, &task_handle);
+}
+
+int Application::buttonpressed()
+{
+    int pressed = digitalRead(GPIO_TRANSMIT_BUTTON);
+#ifdef TRANSMIT_BUTTON_INPUT_PULLUP
+    pressed=!pressed;
+#endif
+  return pressed;
 }
 
 // application task - coordinates everything
@@ -112,7 +125,7 @@ void Application::loop()
   while (true)
   {
     // do we need to start transmitting?
-    if (digitalRead(GPIO_TRANSMIT_BUTTON))
+    if (buttonpressed())
     {
       Serial.println("Started transmitting");
       m_indicator_led->set_is_flashing(true, 0xff0000);
@@ -122,7 +135,7 @@ void Application::loop()
       m_input->start();
       // transmit for at least 1 second or while the button is pushed
       unsigned long start_time = millis();
-      while (millis() - start_time < 1000 || digitalRead(GPIO_TRANSMIT_BUTTON))
+      while (millis() - start_time < 1000 || buttonpressed())
       {
         // read samples from the microphone
         int samples_read = m_input->read(samples, 128);
@@ -146,7 +159,7 @@ void Application::loop()
       digitalWrite(I2S_SPEAKER_SD_PIN, HIGH);
     }
     unsigned long start_time = millis();
-    while (millis() - start_time < 1000 || !digitalRead(GPIO_TRANSMIT_BUTTON))
+    while (millis() - start_time < 1000 || !buttonpressed())
     {
       // read from the output buffer (which should be getting filled by the transport)
       m_output_buffer->remove_samples(samples, 128);
