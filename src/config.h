@@ -5,6 +5,12 @@
 // sample rate for the system
 #define SAMPLE_RATE 16000
 
+#ifdef LED_BUILTIN
+#define LED_PIN LED_BUILTIN
+#else
+#define LED_PIN 2
+#endif
+
 // are you using an I2S microphone - comment this if you want to use an analog mic and ADC input
 // #define USE_I2S_MIC_INPUT
 
