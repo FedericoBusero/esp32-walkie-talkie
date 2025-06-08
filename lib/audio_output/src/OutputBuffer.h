@@ -30,7 +30,7 @@ private:
   SemaphoreHandle_t m_semaphore;
 
 public:
-  OutputBuffer(int number_samples_to_buffer) 
+  OutputBuffer(int number_samples_to_buffer, int output_gain) 
     : m_number_samples_to_buffer(number_samples_to_buffer), m_output_gain(output_gain)
   {
     // create a semaphore and make it available for locking
