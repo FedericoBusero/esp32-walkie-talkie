@@ -5,6 +5,7 @@
 // sample rate for the system
 #define SAMPLE_RATE 16000
 
+// In case pin settings are defined in platform.ini instead of config.h, set WALKIE_TALKIE_USER_DEFINED=1 in platform.ini
 #ifndef WALKIE_TALKIE_USER_DEFINED
 
 // Define which pin is used as LED pin
