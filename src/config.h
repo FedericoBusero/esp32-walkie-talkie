@@ -38,6 +38,9 @@
 // Shutdown line if you have this wired up or -1 if you don't
 #define I2S_SPEAKER_SD_PIN GPIO_NUM_22
 
+// Set the output speaker gain (volume) 1 .. 8
+#define OUTPUT_GAIN 5
+
 // transmit button
 #define GPIO_TRANSMIT_BUTTON 23
 // Comment out following line to use the INPUT_PULLUP mode
