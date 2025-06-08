@@ -99,4 +99,9 @@ public:
     }
     xSemaphoreGive(m_semaphore);
   }
+
+  void set_output_gain(int output_gain)
+  {
+    m_output_gain = output_gain;
+  }
 };
