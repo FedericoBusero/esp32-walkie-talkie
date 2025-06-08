@@ -18,6 +18,8 @@ private:
   int m_write_head;
   // keep track of how many samples we have
   int m_available_samples;
+  // nr of bits to shift for controlling output gain (volume) 1..8 
+  int m_output_gain;
   // the total size of the buffer
   int m_buffer_size;
   // are we currently buffering samples?
@@ -28,7 +30,8 @@ private:
   SemaphoreHandle_t m_semaphore;
 
 public:
-  OutputBuffer(int number_samples_to_buffer) : m_number_samples_to_buffer(number_samples_to_buffer)
+  OutputBuffer(int number_samples_to_buffer) 
+    : m_number_samples_to_buffer(number_samples_to_buffer), m_output_gain(output_gain)
   {
     // create a semaphore and make it available for locking
     m_semaphore = xSemaphoreCreateBinary();
@@ -89,7 +92,7 @@ public:
         m_buffering = false;
         // just send back the samples we've got and move the read head forward
         int16_t sample = m_buffer[m_read_head];
-        samples[i] = (sample - 128) << 5;
+        samples[i] = (sample - 128) << m_output_gain;
         m_read_head = (m_read_head + 1) % m_buffer_size;
         m_available_samples--;
       }
