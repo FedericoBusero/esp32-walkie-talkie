@@ -1,7 +1,7 @@
 #include "Arduino.h"
 #include "GenericDevBoardIndicatorLed.h"
 
-GenericDevBoardIndicatorLed::GenericDevBoardIndicatorLed(int ledpin): m_led_pin(led_pin)
+GenericDevBoardIndicatorLed::GenericDevBoardIndicatorLed(int led_pin): m_led_pin(led_pin)
 {
   pinMode(m_led_pin, OUTPUT);
 }
