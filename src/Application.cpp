@@ -27,7 +27,7 @@ static void application_task(void *param)
 
 Application::Application()
 {
-  m_output_buffer = new OutputBuffer(300 * 16);
+  m_output_buffer = new OutputBuffer(300 * 16,OUTPUT_GAIN);
 #ifdef USE_I2S_MIC_INPUT
   m_input = new I2SMEMSSampler(I2S_NUM_0, i2s_mic_pins, i2s_mic_Config,128);
 #else
