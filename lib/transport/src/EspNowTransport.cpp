@@ -24,6 +24,11 @@ void receiveCallback(const uint8_t *macAddr, const uint8_t *data, int dataLen)
 
 bool EspNowTransport::begin()
 {
+#ifdef ESPNOW_LRMODE
+  // Enable LR-mode
+  esp_wifi_set_protocol(WIFI_IF_STA, WIFI_PROTOCOL_LR);
+#endif
+
   // Set Wifi channel
   esp_wifi_set_promiscuous(true);
   esp_wifi_set_channel(m_wifi_channel, WIFI_SECOND_CHAN_NONE);
